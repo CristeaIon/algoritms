@@ -1,5 +1,6 @@
 use rand::{seq::SliceRandom, Rng};
-fn main() { let mut arr: Vec<usize> = Vec::new();
+fn main() {
+    let mut arr: Vec<usize> = Vec::new();
 
     let mut rng = rand::thread_rng();
 
@@ -12,11 +13,13 @@ fn main() { let mut arr: Vec<usize> = Vec::new();
 
     let mut arr_copy = arr.clone();
 
-    let sorted = selection_sort(arr);
+    let sorted = selection_sort(arr.clone());
+    let buble_sort = bubble_sort(arr.clone());
 
     arr_copy.sort();
 
-    println!("{}",sorted==arr_copy);
+    println!("{}", sorted == arr_copy);
+    println!("{}", buble_sort == arr_copy);
 }
 
 fn selection_sort(mut arr: Vec<usize>) -> Vec<usize> {
@@ -29,6 +32,16 @@ fn selection_sort(mut arr: Vec<usize>) -> Vec<usize> {
         }
 
         arr.swap(j, min_ind);
+    }
+    arr
+}
+fn bubble_sort(mut arr: Vec<usize>) -> Vec<usize> {
+    for _ in 0..arr.len() {
+        for i in 1..arr.len() {
+            if arr[i] < arr[i - 1] {
+                arr.swap(i, i - 1)
+            }
+        }
     }
     arr
 }
